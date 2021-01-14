@@ -18,6 +18,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyLibraryData\MyLibraryData.csproj" />
+    <ProjectReference Include="..\MyLibraryServices\MyLibraryServices.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Models\BooksViewModel\" />
+    <Folder Include="Models\AuthorsViewModel\" />
+    <Folder Include="Models\ListViewModel\" />
   </ItemGroup>
 
 </Project>

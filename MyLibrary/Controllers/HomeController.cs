@@ -5,25 +5,38 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using MyLibraryData;
+using MyLibrary.Models.HomeViewModel;
 
 namespace MyLibrary.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IBooksService _bookService;
+        private readonly IAuthorService _authorService;
+        public HomeController(IBooksService bookService, IAuthorService authorService)
+        {
+            _bookService = bookService;
+            _authorService = authorService;
+        }
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Detail(int id)
         {
-            return View();
-        }
+            var book = _bookService.Get(id);
+            var author = _authorService.Get(id);
+            var model = new BookDetailModel
+            { 
+                Title = book.Title,
+                Author = author.FName,
+                Whom = book.Whom
+            };
+            return View(model);
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
+
