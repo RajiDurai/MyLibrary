@@ -9,5 +9,6 @@ namespace MyLibraryData
         Author Get(int id);
         IEnumerable<Author> GetAllWithBooks();
         Author GetWithBooks(int id);
+        string GetAuthor(int id);
     }
 }

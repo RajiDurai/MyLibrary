@@ -30,5 +30,10 @@ namespace MyLibraryServices
         {
             return _context.Authors.Where(a => a.Id == id).Include(a => a.Books).FirstOrDefault();
         }
+        public string GetAuthor(int id)
+        {
+            var book = Get(id);
+            return book.FName;
+        }
     }
 }

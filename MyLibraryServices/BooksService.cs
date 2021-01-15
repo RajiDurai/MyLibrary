@@ -51,7 +51,8 @@ namespace MyLibraryServices
 
         public string GetWhom(int id)
         {
-            throw new NotImplementedException();
+            var book = (Books)Get(id);
+            return book.Whom;
         }
     }
 }

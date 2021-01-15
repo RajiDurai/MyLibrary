@@ -8,9 +8,7 @@ namespace MyLibrary.Models.HomeViewModel
 {
     public class BookDetailModel
     {
-        public string Title { get; set; }
-        public string Author { get; set; }
-
-        public string Whom { get; set; }
+       
+        public IEnumerable<BookDetailListingModel> Books { get; set; }
     }
 }

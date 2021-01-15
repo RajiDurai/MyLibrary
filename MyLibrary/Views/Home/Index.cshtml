@@ -1,12 +1,12 @@
 ﻿
 @using MyLibraryData.Models;
-@model IEnumerable<Books>;
+@model MyLibrary.Models.HomeViewModel.BookDetailModel;
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div id="assets">
+<div id="books">
     <h3>Books List</h3>
     <div id="booksTable">
         <table class="table table-condensed" id="catalogIndexTable">
@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (Books book in Model)
+                @foreach (var book in @Model.Books)
                 {
                     <tr class="bookRow">
                         <td class="">
