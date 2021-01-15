@@ -1,20 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyLibrary.Models;
+using MyLibrary.Models.BooksViewModel;
+using MyLibraryData;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System;
-using MyLibraryData;
-using MyLibrary.Models.HomeViewModel;
+using System.Threading.Tasks;
 
 namespace MyLibrary.Controllers
 {
-    public class HomeController : Controller
+    public class BooksController : Controller
     {
         private readonly IBooksService _bookService;
         private readonly IAuthorService _authorService;
-        public HomeController(IBooksService bookService, IAuthorService authorService)
+        public BooksController(IBooksService bookService, IAuthorService authorService)
         {
             _bookService = bookService;
             _authorService = authorService;
@@ -23,15 +21,15 @@ namespace MyLibrary.Controllers
         {
             var assetModels = _bookService.GetAll();
             var listingResult = assetModels
-                .Select(a => new BookDetailListingModel
+                .Select(a => new BookListingModel
                 {
                     Id = a.Id,
                     Title = a.Title,
                     Author = "Raji",
                     Whom = _bookService.GetWhom(a.Id)
-                   
+
                 }).ToList();
-            var model = new BookDetailModel
+            var model = new BookModel
             {
                 Books = listingResult
             };
@@ -39,12 +37,12 @@ namespace MyLibrary.Controllers
             return View(model);
         }
 
-        public IActionResult Detail(int id)
+        public IActionResult Add(int id)
         {
             var book = _bookService.Get(id);
             var author = _authorService.Get(id);
-            var model = new BookDetailListingModel
-            { 
+            var model = new BookListingModel
+            {
                 Title = book.Title,
                 Author = author.FName,
                 Whom = book.Whom
@@ -55,4 +53,3 @@ namespace MyLibrary.Controllers
         }
     }
 }
-

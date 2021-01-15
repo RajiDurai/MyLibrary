@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyLibraryData;
+using MyLibraryServices;
 
 namespace MyLibrary
 {
@@ -35,6 +36,10 @@ namespace MyLibrary
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddScoped<IBooksService, BooksService>();
+            services.AddSingleton(Configuration);
+            services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<IGenreService, GenreService>();
             services.AddDbContext<MyLibraryContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("LibraryConnection")));
         }

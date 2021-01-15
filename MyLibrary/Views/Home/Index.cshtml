@@ -1,8 +1,54 @@
-﻿@{
+﻿
+@using MyLibraryData.Models;
+@model MyLibrary.Models.HomeViewModel.BookDetailModel;
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="books">
+    <h3>Books List</h3>
+    <div id="booksTable">
+        <table class="table table-condensed" id="catalogIndexTable">
+            <thead>
+                <tr>                  
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Who for books checked out</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in @Model.Books)
+                {
+                    <tr class="bookRow">
+                        <td class="">
+                            <div>
+                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@book.Id">
+                                    @book.Title
+                                                            </a>
+                            </div>
+                        </td>
+                        <td class="">@book.Author</td>
+                        <td class="">@book.Whom</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
+@section Styles {
+    <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://cdn.datatables.net/plug-ins/a5734b29083/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+}
+@section Scripts {
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://cdn.datatables.net/plug-ins/a5734b29083/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#catalogIndexTable').DataTable();
+        });
+    </script>
+}
