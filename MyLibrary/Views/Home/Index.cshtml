@@ -23,11 +23,11 @@
                     <tr class="bookRow">
                         <td class="">
                             <div>
-                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@book.Id">                                  
-                                </a>
+                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@book.Id">
+                                    @book.Title
+                                                            </a>
                             </div>
                         </td>
-                        <td class="">@book.Title</td>
                         <td class="">@book.Author</td>
                         <td class="">@book.Whom</td>
                     </tr>

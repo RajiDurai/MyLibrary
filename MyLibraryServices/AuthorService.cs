@@ -35,5 +35,15 @@ namespace MyLibraryServices
             var book = Get(id);
             return book.FName;
         }
+
+        public void Delete(string author)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(string author)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

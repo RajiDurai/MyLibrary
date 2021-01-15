@@ -5,8 +5,9 @@ using MyLibraryData.Models;
 
 namespace MyLibraryData
 {
-    public class INotesService
+    public interface INotesService
     {
-        
+        string GetNotes(int id);
+        void Add(string author);
     }
 }

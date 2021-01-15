@@ -10,5 +10,7 @@ namespace MyLibraryData
         IEnumerable<Author> GetAllWithBooks();
         Author GetWithBooks(int id);
         string GetAuthor(int id);
+        void Delete(string author);
+        void Add(string author);
     }
 }
